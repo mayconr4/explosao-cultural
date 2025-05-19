@@ -5,7 +5,7 @@ enum TipoClassificacao{
     case INFANTIL;  
     case  ADULTO; 
 
-    public function getDescricao(): string
+    public function getClassificacao(): string
     {
         return match($this) {
             self::INFANTIL => 'Classificação Infantil',
@@ -15,4 +15,5 @@ enum TipoClassificacao{
 }
 
 
-TipoClassificacao::INFANTIL->getDescricao(); // "Classificação Infantil"
+TipoClassificacao::INFANTIL->getClassificacao(); // "Classificação Infantil"
+TipoClassificacao::ADULTO->getClassificacao(); // "Classificação Adulto"
