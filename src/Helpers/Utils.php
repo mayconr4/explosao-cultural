@@ -48,25 +48,5 @@ final class Utils
 
     } 
 
-     public static function parseTipoGenero(string $valor): TipoGenero
-    {
-        foreach (TipoGenero::cases() as $case) {
-            if (strcasecmp($case->value, $valor) === 0) {
-                return $case;
-            }
-        }
-
-        throw new InvalidArgumentException("Gênero inválido: '$valor'");
-    }
-
-    public static function parseTipoClassificacao(string $valor): TipoClassificacao
-    {
-        foreach (TipoClassificacao::cases() as $case) {
-            if (strcasecmp($case->value, $valor) === 0) {
-                return $case;
-            }
-        }
-
-        throw new InvalidArgumentException("Classificação inválida: '$valor'");
-    }
+     
 }

@@ -1,8 +1,18 @@
 <?php 
 namespace ExplosaoCultural\Enums; 
 
-enum TipoClassificacao:string{ 
-    case INFANTIL = 'infantil';  
-    case  ADULTO = 'adulto'; 
-    
+enum TipoClassificacao{ 
+    case INFANTIL;  
+    case  ADULTO; 
+
+    public function getDescricao(): string
+    {
+        return match($this) {
+            self::INFANTIL => 'Classificação Infantil',
+            self::ADULTO => 'Classificação Adulto',
+        };
+    }
 }
+
+
+TipoClassificacao::INFANTIL->getDescricao(); // "Classificação Infantil"
