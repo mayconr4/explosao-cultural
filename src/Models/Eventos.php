@@ -10,7 +10,7 @@ final class Eventos
     private string $nome; 
     private string $data;
     private string $horario;
-    public TipoClassificacao $classificacao ; 
+    private TipoClassificacao $classificacao ; 
     private string $telefone;
     private ?string $descricao; 
     private int $enderecoId;

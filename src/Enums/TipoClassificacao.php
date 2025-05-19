@@ -1,8 +1,8 @@
 <?php 
 namespace ExplosaoCultural\Enums; 
 
-enum TipoClassificacao{ 
-    case INFANTIL;
-    case  ADULTO;
+enum TipoClassificacao:string{ 
+    case INFANTIL = 'infantil';  
+    case  ADULTO = 'adulto'; 
     
 }

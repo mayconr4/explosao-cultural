@@ -3,6 +3,7 @@
 namespace ExplosaoCultural\Helpers;
 
 use ExplosaoCultural\Enums\TipoClassificacao;
+use ExplosaoCultural\Enums\TipoGenero;
 use InvalidArgumentException;
 
 final class Utils 
@@ -11,7 +12,8 @@ final class Utils
     private function __construct()
     {
         
-    } 
+    }  
+    
 
     public static function validarCamposEventos(string $nome,string $data, string $horario, TipoClassificacao $classificacao, string $telefone,  int $enderecoId, int $generoId, int $usuarioId) { 
         switch ($nome) {
@@ -44,5 +46,27 @@ final class Utils
                 break;
         }
 
+    } 
+
+     public static function parseTipoGenero(string $valor): TipoGenero
+    {
+        foreach (TipoGenero::cases() as $case) {
+            if (strcasecmp($case->value, $valor) === 0) {
+                return $case;
+            }
+        }
+
+        throw new InvalidArgumentException("Gênero inválido: '$valor'");
+    }
+
+    public static function parseTipoClassificacao(string $valor): TipoClassificacao
+    {
+        foreach (TipoClassificacao::cases() as $case) {
+            if (strcasecmp($case->value, $valor) === 0) {
+                return $case;
+            }
+        }
+
+        throw new InvalidArgumentException("Classificação inválida: '$valor'");
     }
 }
