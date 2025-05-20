@@ -1,8 +1,8 @@
 <?php 
 
 namespace ExplosaoCultural\Models;
-use ExplosaoCultural\Enums\TipoGenero; 
-
+use ExplosaoCultural\Enums\TipoGenero;
+use ExplosaoCultural\Enums\TipoUsuario;
 
 final class Usuarios 
 { 
@@ -11,7 +11,7 @@ final class Usuarios
     private string $dataNascimento;
     private string $email;
     private string $senha;
-    private TipoGenero $tipoDoUser; 
+    private TipoUsuario $tipoDoUser; 
 
 
 
@@ -20,7 +20,7 @@ final class Usuarios
         string $dataNascimento,
         string $email,
         string $senha,
-        TipoGenero $tipoDoUser,
+        TipoUsuario $tipoDoUser = TipoUsuario::USUARIO,
         ?int $id = null
     ) {
         $this->setNome($nome);
@@ -58,7 +58,7 @@ final class Usuarios
         return $this->senha;
     }
 
-    public function getTipoDoUser(): TipoGenero
+    public function getTipoDoUser(): TipoUsuario
     { 
         return $this->tipoDoUser;
     } 
@@ -89,7 +89,7 @@ final class Usuarios
         $this->senha = $senha;
     }
 
-    public function setTipoDoUser(TipoGenero $tipoDoUser): void
+    public function setTipoDoUser(TipoUsuario $tipoDoUser): void
     { 
         $this->tipoDoUser = $tipoDoUser;
     }
