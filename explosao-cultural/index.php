@@ -1,3 +1,20 @@
+<?php 
+use ExplosaoCultural\Helpers\Utils;
+use ExplosaoCultural\Services\EventoServico;
+require_once "../vendor/autoload.php"; 
+
+$eventoServico = new EventoServico(); 
+$mensagemDeErro = "";
+try { 
+  $listaDeEventos = $eventoServico->listarTodos();
+  $quantidade = count($listaDeEventos);
+
+} catch (Throwable $erro) { 
+  Utils::registrarErro($erro); 
+  $mensagemDeErro =  "Erro ao listar eventos";
+  ;
+}
+?>
 <!doctype html>
 <html lang="pt-br">
 
