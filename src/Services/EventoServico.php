@@ -55,12 +55,23 @@ final class EventoServico
 
     }  
 
-    //inserir 
-    /*public function inserir(Evento $evento): 
-    { 
-        $sql = "";
-        
-        
-    }*/
+    //buscarPorId() 
+    public function buscarPorId(int $id): ?array
+    {
+        $sql = "SELECT * FROM eventos WHERE id = :id";
+               
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $id, PDO::PARAM_INT);
+            $consulta->execute();
+
+            return $consulta->fetch(PDO::FETCH_ASSOC) ?: null;
+        } catch (Throwable $erro) { 
+            Utils::registrarErro($erro);
+            throw new Exception("erro ao buscar evento");
+        }
+      
+    }
+
 
 }

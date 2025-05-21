@@ -3,17 +3,9 @@ use ExplosaoCultural\Helpers\Utils;
 use ExplosaoCultural\Services\EventoServico;
 require_once "../vendor/autoload.php"; 
 
-$eventoServico = new EventoServico(); 
-$mensagemDeErro = "";
-try { 
-  $listaDeEventos = $eventoServico->listarTodos();
-  $quantidade = count($listaDeEventos);
+ $eventoServico = new EventoServico(); 
+ $listaDeEventos = $eventoServico->listarTodos();
 
-} catch (Throwable $erro) { 
-  Utils::registrarErro($erro); 
-  $mensagemDeErro =  "Erro ao listar eventos";
-  ;
-}
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -54,7 +46,7 @@ try {
     <div id="carouselEventos" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
 
-        <!-- Fazer um for each para listar todos -->
+       
         <div class="carousel-item active">
           <div class="d-flex gap-3">
             <div class="card bg-secondary text-light" style="min-width: 300px;">
@@ -104,7 +96,7 @@ try {
         <span class="carousel-control-next-icon"></span>
       </button>
     </div>
-  </section>
+  </section> <!-- Fim do Carrossel -->
 
 
   <main class="container py-5">
@@ -159,7 +151,15 @@ try {
         <div class="card bg-secondary text-light h-100">
           <img src="https://source.unsplash.com/400x250/?art,exhibition" class="card-img-top" alt="Exposição">
           <div class="card-body">
-            <h5 class="card-title">Arte Urbana</h5>
+            <h5 class="card-title">Arte Urbana</h5> <!-- nome do evento -->
+            <p class="card-text"></p> <!-- data do  evento --> 
+            <p class="card-text"></p> <!-- horario do  evento -->
+            <p class="card-text"></p> <!-- classificação enum  do  evento -->
+            <p class="card-text"></p> <!-- data do  evento -->
+            <p class="card-text"></p> <!-- telefone do  evento -->
+            <p class="card-text"></p> <!-- descrição do  evento --> 
+            <p class="card-text"></p> <!-- data do  evento -->
+            <p class="card-text"></p> <!-- imagem do  evento -->
             <p class="card-text">Exposição de grafite e arte de rua. De 5 a 15 de Setembro.</p>
           </div>
         </div>
