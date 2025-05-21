@@ -24,7 +24,7 @@ final class EventoServico
     public function listarTodos(): array
     { 
         $sql = "SELECT  
-        eventos.id AS id,
+        eventos.id ,
         eventos.nome AS evento,
         DATE_FORMAT(eventos.datas, '%d/%m/%Y') AS data_evento,
         TIME_FORMAT(eventos.horario, '%Hh%i') AS horario,
@@ -38,8 +38,9 @@ final class EventoServico
         FROM eventos
         JOIN usuarios ON eventos.usuario_id = usuarios.id
         JOIN generos ON eventos.genero_id = generos.id
-        JOIN enderecos ON eventos.endereco_id = enderecos.id         
-        ";
+        JOIN enderecos ON eventos.endereco_id = enderecos.id   
+        ORDER BY evento";       
+        
     // WHERE eventos.status = 1 
     // ORDER BY eventos.datas DESC, eventos.horario DESC Olhar com calma está relacionado a o metofo que você tem que desenvolver para o evento mais proximos terem preferenci a de exibição
         

@@ -54,6 +54,7 @@ try {
     <div id="carouselEventos" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
 
+        <!-- Fazer um for each para listar todos -->
         <div class="carousel-item active">
           <div class="d-flex gap-3">
             <div class="card bg-secondary text-light" style="min-width: 300px;">

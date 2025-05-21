@@ -38,3 +38,13 @@ Arquivo: C:\xampp\htdocs\explosao-cultural\src\Services\EventoServico.php
 Linha: 48
 Mensagem: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'vendas.eventos' doesn't exist
 
+[2025-05-21 08:16:33]
+Arquivo: C:\xampp\htdocs\explosao-cultural\src\Services\EventoServico.php
+Linha: 49
+Mensagem: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'vendas.eventos' doesn't exist
+
+[2025-05-21 08:16:33]
+Arquivo: C:\xampp\htdocs\explosao-cultural\src\Services\EventoServico.php
+Linha: 53
+Mensagem: erro ao listar eventos
+
