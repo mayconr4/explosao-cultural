@@ -11,7 +11,8 @@ abstract class ConexaoDB
     private static string $servidor = "localhost";
     private static string $usuario = "root";
     private static string $senha = "";
-    private static string $banco = "vendas";
+    private static string $banco = "explosao_cultural";
+    private static string $charset = "utf8";
 
     public static function getConexao():PDO 
     { 

@@ -49,8 +49,8 @@ final class EventoServico
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         } catch(Throwable $erro){
-            Utils::registrarErro($erro);
-            throw new Exception("erro ao listar eventos");
+            //Utils::registrarErro($erro);
+            throw new Exception("erro ao listar eventos". $erro->getMessage());
         }
 
     }  
