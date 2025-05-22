@@ -1,15 +1,3 @@
-<?php
-
-use ExplosaoCultural\Helpers\Utils;
-use ExplosaoCultural\Services\EventoServico;
-
-require_once "../vendor/autoload.php";
-
-$eventoServico = new EventoServico();
-$listaDeEventos = $eventoServico->listarTodos();
-
-
-?>
 <!doctype html>
 <html lang="pt-br">
 
@@ -34,11 +22,17 @@ $listaDeEventos = $eventoServico->listarTodos();
             <ul class="navbar-nav ms-auto">
               <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
               <li class="nav-item"><a class="nav-link" href="generos.php">Gêneros</a></li>
-              <li class="nav-item"><a class="nav-link" href="enderecos.php">Endereços</a></li>
               <li class="nav-item"><a class="nav-link" href="usuarios.php">Login</a></li>
+              <li class="nav-item"><a class="nav-link" href="CriarEvento.php">Crie seu evento</a></li>
+              <div class="position-relative">
+                <form autocomplete="off" class="d-flex" action="resultados.php" method="POST" onsubmit="return false" id="form-busca">
+                  <input id="campo-busca" name="busca" class="form-control me-2" type="search" placeholder="Pesquise aqui" aria-label="Pesquise aqui">
+                </form>
+                <!-- Div manipulada pelo busca.js -->
+                <div id="resultados" class="mt-3 position-absolute container bg-white shadow-lg p-3 rounded"></div>
+              </div>
             </ul>
           </div>
-        </div>
       </nav>
     </div>
   </header>
@@ -48,7 +42,6 @@ $listaDeEventos = $eventoServico->listarTodos();
 
     <div id="carouselEventos" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
-
 
         <div class="carousel-item active">
           <div class="d-flex gap-3">
@@ -99,7 +92,7 @@ $listaDeEventos = $eventoServico->listarTodos();
         <span class="carousel-control-next-icon"></span>
       </button>
     </div>
-  </section> <!-- Fim do Carrossel -->
+  </section>
 
 
   <main class="container py-5">
@@ -111,10 +104,19 @@ $listaDeEventos = $eventoServico->listarTodos();
 
 
     <section class="row g-4">
+      <div class="col-md-4">
+        <div class="card bg-secondary text-light h-100">
+          <img src="https://source.unsplash.com/400x250/?concert" class="card-img-top" alt="Show">
+          <div class="card-body">
+            <h5 class="card-title">Festival Indie</h5>
+            <p class="card-text">Música ao vivo e artistas nacionais. Dia 20 de Julho.</p>
 
+          </div>
+        </div>
+      </div>
 
       <!-- mudou -->
-      <!-- <div class="col-md-4">
+      <div class="col-md-4">
         <div class="card bg-secondary text-light h-100 post" data-bs-toggle="modal" data-bs-target="#postModal">
           <img src="https://source.unsplash.com/400x250/?dance,party" class="card-img-top" alt="Festa">
           <div class="card-body">
@@ -122,41 +124,65 @@ $listaDeEventos = $eventoServico->listarTodos();
             <p class="card-text">A noite mais dançante do mês. Dia 12 de Agosto.</p>
           </div>
         </div>
-      </div> -->
+      </div>
+
       <!-- Modal -->
-      <!-- <div class="modal" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="postModalLabel">Detalhes do Evento</h5>
-        <button type="button" class="btn-close fechar-modal" data-bs-dismiss="modal" aria-label="Fechar"></button>
-      </div>
-      <div class="modal-body">
-        <p>Mais informações sobre o Baile Black...</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary fechar-modal" data-bs-dismiss="modal">Fechar</button>
-      </div>
-    </div>
-  </div> -->
-      </div>
-      <?php foreach ($listaDeEventos as $evento) { ?>
-        <div class="col-md-4">
-          <div class="card bg-secondary text-light h-100">
-            <img src="https://source.unsplash.com/400x250/?art,exhibition" class="card-img-top" alt="Exposição">
-            <div class="card-body">
-              <h5 class="card-title">Evento: <?= $evento['evento'] ?></h5> <!-- nome do evento -->
-              <p class="card-text">data do evento: <?= $evento['data_evento'] ?></p> <!-- data do  evento -->
-              <p class="card-text">Horario: <?= $evento['horario'] ?></p> <!-- horario do  evento -->
-              <p class="card-text">Classificação indicativa: <?= $evento['classificacao'] ?></p> <!-- classificação enum  do  evento -->
-              <p class="card-text">Telefone: <?= $evento['telefone'] ?></p> <!-- telefone do  evento -->
-              <p class="card-text">Descrição: <?= $evento['descricao'] ?></p> <!-- descrição do  evento -->
-              <!-- <p class="card-text"></p> imagem do  evento -->
+      <div class="modal" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="postModalLabel">Detalhes do Evento</h5>
+              <button type="button" class="btn-close fechar-modal" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+              <p>Mais informações sobre o Baile Black...</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary fechar-modal" data-bs-dismiss="modal">Fechar</button>
             </div>
           </div>
         </div>
-      <?php } ?>
+      </div>
 
+      <div class="col-md-4">
+        <div class="card bg-secondary text-light h-100">
+          <img src="https://source.unsplash.com/400x250/?art,exhibition" class="card-img-top" alt="Exposição">
+          <div class="card-body">
+            <h5 class="card-title">Arte Urbana</h5>
+            <p class="card-text">Exposição de grafite e arte de rua. De 5 a 15 de Setembro.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card bg-secondary text-light h-100">
+          <img src="https://source.unsplash.com/400x250/?dance,party" class="card-img-top" alt="Festa">
+          <div class="card-body">
+            <h5 class="card-title">Baile Black</h5>
+            <p class="card-text">A noite mais dançante do mês. Dia 12 de Agosto.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card bg-secondary text-light h-100">
+          <img src="https://source.unsplash.com/400x250/?dance,party" class="card-img-top" alt="Festa">
+          <div class="card-body">
+            <h5 class="card-title">Baile Black</h5>
+            <p class="card-text">A noite mais dançante do mês. Dia 12 de Agosto.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card bg-secondary text-light h-100">
+          <img src="https://source.unsplash.com/400x250/?art,exhibition" class="card-img-top" alt="Exposição">
+          <div class="card-body">
+            <h5 class="card-title">Arte Urbana</h5>
+            <p class="card-text">Exposição de grafite e arte de rua. De 5 a 15 de Setembro.</p>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -166,6 +192,7 @@ $listaDeEventos = $eventoServico->listarTodos();
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/menu.js"></script>
+  <script src="js/buscar.js"></script>
 </body>
 
 </html>
