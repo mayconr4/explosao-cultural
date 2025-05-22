@@ -33,8 +33,8 @@ final class EventoServico
         eventos.descricao AS descricao,
         eventos.imagem AS imagem,
         usuarios.nome AS criador,
-        generos.nome AS genero,
-        CONCAT(enderecos.rua, ', ', enderecos.numero, ' - ', enderecos.cidade) AS endereco
+        generos.tipo AS genero,
+        enderecos.logradouro AS endereco
         FROM eventos
         JOIN usuarios ON eventos.usuario_id = usuarios.id
         JOIN generos ON eventos.genero_id = generos.id
