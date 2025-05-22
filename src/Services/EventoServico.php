@@ -3,10 +3,10 @@
 namespace ExplosaoCultural\Services;
 
 use Exception;
-use ExplosaoCultural\DataBase\ConexaoDB;
-use ExplosaoCultural\Models\Evento;
+use ExplosaoCultural\DataBase\ConexaoDB; 
 use ExplosaoCultural\Enums\TipoGenero;
 use ExplosaoCultural\Helpers\Utils;
+use ExplosaoCultural\Models\Eventos;
 use PDO;
 use Throwable;
 
@@ -71,6 +71,33 @@ final class EventoServico
             throw new Exception("erro ao buscar evento");
         }
       
+    } 
+
+    //inserir() 
+    public function inserir(Eventos $evento): bool
+    {
+        $sql = "INSERT INTO eventos (nome,datas,horario,classificacao,telefone,usuario_id,endereco_id,genero_id,descricao,imagem)
+        vALUES (:nome,:datas,:horario,:classificacao,:telefone,:usuario_id,:endereco_id,:genero_id,:descricao,:imagem)";
+        
+        
+        try {
+            $consulta = $this->conexao->prepare($sql); 
+            $consulta->bindValue(":nome", $evento->getNome(), PDO::PARAM_STR);
+            $consulta->bindValue(":datas", $evento->getData(), PDO::PARAM_STR);
+            $consulta->bindValue(":horario", $evento->getHorario(), PDO::PARAM_STR);
+            $consulta->bindValue(":classificacao", $evento->getClassificacao(), PDO::PARAM_STR);
+            $consulta->bindValue(":telefone", $evento->getTelefone(), PDO::PARAM_STR);
+            $consulta->bindValue(":usuario_id", $evento->getUsuarioId(), PDO::PARAM_INT);
+            $consulta->bindValue(":endereco_id", $evento->getEnderecoId(), PDO::PARAM_INT);
+            $consulta->bindValue(":genero_id", $evento->getGeneroId(), PDO::PARAM_INT);
+            $consulta->bindValue(":descricao", $evento->getDescricao(), PDO::PARAM_STR);
+            $consulta->bindValue(":imagem", $evento->getImagem(), PDO::PARAM_STR);
+
+            return $consulta->execute();
+        } catch (Throwable $erro) {
+            Utils::registrarErro($erro);
+            throw new Exception("erro ao inserir evento");
+        }
     }
 
 
