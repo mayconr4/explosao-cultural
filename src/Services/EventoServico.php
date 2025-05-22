@@ -98,6 +98,58 @@ final class EventoServico
             Utils::registrarErro($erro);
             throw new Exception("erro ao inserir evento");
         }
+    } 
+
+    //atualizar()
+    public function atualizar(Eventos $evento): void
+    {
+        $sql = "UPDATE eventos SET nome = :nome,
+        datas = :datas,
+        horario = :horario,
+        classificacao = :classificacao,
+        telefone = :telefone,
+        usuario_id = :usuario_id,
+        endereco_id = :endereco_id,
+        genero_id = :genero_id,
+        descricao = :descricao,
+        imagem = :imagem WHERE id = :id";
+        
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $evento->getId(), PDO::PARAM_INT);
+            $consulta->bindValue(":nome", $evento->getNome(), PDO::PARAM_STR);
+            $consulta->bindValue(":datas", $evento->getData(), PDO::PARAM_STR);
+            $consulta->bindValue(":horario", $evento->getHorario(), PDO::PARAM_STR);
+            $consulta->bindValue(":classificacao", $evento->getClassificacao(), PDO::PARAM_STR);
+            $consulta->bindValue(":telefone", $evento->getTelefone(), PDO::PARAM_STR);
+            $consulta->bindValue(":usuario_id", $evento->getUsuarioId(), PDO::PARAM_INT);
+            $consulta->bindValue(":endereco_id", $evento->getEnderecoId(), PDO::PARAM_INT);
+            $consulta->bindValue(":genero_id", $evento->getGeneroId(), PDO::PARAM_INT);
+            $consulta->bindValue(":descricao", $evento->getDescricao(), PDO::PARAM_STR);
+            $consulta->bindValue(":imagem", $evento->getImagem(), PDO::PARAM_STR);
+
+            if (!$consulta->execute()) {
+                throw new Exception("erro ao atualizar evento");
+            }
+        } catch (Throwable $erro) {
+            Utils::registrarErro($erro);
+            throw new Exception("erro ao atualizar evento");
+        }
+    } 
+
+    //excluir()
+    public function excluir(int $id): void
+    {
+        $sql = "DELETE FROM eventos WHERE id = :id";
+        
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $id, PDO::PARAM_INT);
+            $consulta->execute();
+        } catch (Throwable $erro) {
+            Utils::registrarErro($erro);
+            throw new Exception("erro ao excluir evento");
+        }
     }
 
 

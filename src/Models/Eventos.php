@@ -13,7 +13,7 @@ final class Eventos
     private TipoClassificacao $classificacao ; 
     private string $telefone;
     private ?string $descricao; 
-    private ?string $imagem; 
+    private string $imagem; 
     private int $enderecoId;
     private int $generoId;
     private int $usuarioId;  
@@ -27,7 +27,7 @@ final class Eventos
         int $enderecoId,
         int $generoId,
         int $usuarioId, 
-        ?string $imagem,
+        string $imagem,
         ?string $descricao = null,
         ?int $id = null
 
@@ -59,7 +59,7 @@ final class Eventos
         return $this->descricao;
     } 
 
-    public function getImagem(): ?string 
+    public function getImagem(): string 
     { 
         return $this->imagem;
     }
@@ -116,7 +116,7 @@ final class Eventos
         $this->descricao = $descricao;
     }  
 
-    private function setImagem(?string $imagem): void 
+    private function setImagem(string $imagem): void 
     {
         $this->imagem = $imagem;
     }
