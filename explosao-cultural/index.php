@@ -3,36 +3,11 @@
 use ExplosaoCultural\Helpers\Utils;
 use ExplosaoCultural\Services\EventoServico;
 
-require_once "../vendor/autoload.php"; 
-
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-echo "Início do script<br>";
-
-
-
-echo "Autoload carregado<br>";
-
-
-
-
-
-echo "Instância criada<br>";
-
-
-
-echo "<pre>";
-print_r($listaDeEventos);
-echo "</pre>";
-die();
+require_once "../vendor/autoload.php";
 
 $eventoServico = new EventoServico();
 $listaDeEventos = $eventoServico->listarTodos();
-var_dump($listaDeEventos); // <-- TEMPORÁRIO
-die();
+
 
 ?>
 <!doctype html>
