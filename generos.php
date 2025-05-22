@@ -44,95 +44,21 @@
     </section>
 
     <section class="row g-4">
-      <div class="col-md-4">
-        <div class="card bg-secondary text-light h-100">
-          <img src="https://source.unsplash.com/400x250/?concert" class="card-img-top" alt="Show">
-          <div class="card-body">
-            <h5 class="card-title">Festival Indie</h5>
-            <p class="card-text">Música ao vivo e artistas nacionais. Dia 20 de Julho.</p>
-          </div>
-        </div>
+  <?php foreach ($listaDeEventos as $evento) { ?>
+  <div class="col-md-4">
+    <div class="card bg-secondary text-light h-100">
+      <img src="images/<?=$evento['imagem']?>" class="card-img-top" alt="Exposição">
+      <div class="card-body">
+        <h5 class="card-title">Evento: <?= $evento['evento'] ?></h5>
+        <p class="card-text">data do evento: <?= $evento['data_evento'] ?></p>
+        <p class="card-text">Horario: <?= $evento['horario'] ?></p>
+        <p class="card-text">Classificação indicativa: <?= $evento['classificacao'] ?></p>
+        <p class="card-text">Telefone: <?= $evento['telefone'] ?></p>
+        <p class="card-text">Descrição: <?= $evento['descricao'] ?></p>
       </div>
-
-      <div class="col-md-4">
-        <div class="card bg-secondary text-light h-100">
-          <img src="https://source.unsplash.com/400x250/?dance,party" class="card-img-top" alt="Festa">
-          <div class="card-body">
-            <h5 class="card-title">Baile Black</h5>
-            <p class="card-text">A noite mais dançante do mês. Dia 12 de Agosto.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card bg-secondary text-light h-100">
-          <img src="https://source.unsplash.com/400x250/?art,exhibition" class="card-img-top" alt="Exposição">
-          <div class="card-body">
-            <h5 class="card-title">Arte Urbana</h5>
-            <p class="card-text">Exposição de grafite e arte de rua. De 5 a 15 de Setembro.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card bg-secondary text-light h-100">
-          <img src="https://source.unsplash.com/400x250/?dance,party" class="card-img-top" alt="Festa">
-          <div class="card-body">
-            <h5 class="card-title">Baile Black</h5>
-            <p class="card-text">A noite mais dançante do mês. Dia 12 de Agosto.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card bg-secondary text-light h-100">
-          <img src="https://source.unsplash.com/400x250/?art,exhibition" class="card-img-top" alt="Exposição">
-          <div class="card-body">
-            <h5 class="card-title">Arte Urbana</h5>
-            <p class="card-text">Exposição de grafite e arte de rua. De 5 a 15 de Setembro.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card bg-secondary text-light h-100">
-          <img src="https://source.unsplash.com/400x250/?dance,party" class="card-img-top" alt="Festa">
-          <div class="card-body">
-            <h5 class="card-title">Baile Black</h5>
-            <p class="card-text">A noite mais dançante do mês. Dia 12 de Agosto.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card bg-secondary text-light h-100">
-          <img src="https://source.unsplash.com/400x250/?dance,party" class="card-img-top" alt="Festa">
-          <div class="card-body">
-            <h5 class="card-title">Baile Black</h5>
-            <p class="card-text">A noite mais dançante do mês. Dia 12 de Agosto.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card bg-secondary text-light h-100">
-          <img src="https://source.unsplash.com/400x250/?dance,party" class="card-img-top" alt="Festa">
-          <div class="card-body">
-            <h5 class="card-title">Baile Black</h5>
-            <p class="card-text">A noite mais dançante do mês. Dia 12 de Agosto.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card bg-secondary text-light h-100">
-          <img src="https://source.unsplash.com/400x250/?dance,party" class="card-img-top" alt="Festa">
-          <div class="card-body">
-            <h5 class="card-title">Baile Black</h5>
-            <p class="card-text">A noite mais dançante do mês. Dia 12 de Agosto.</p>
-          </div>
-        </div>
-      </div>
+    </div>
+  </div>
+<?php } ?>
     </section>
   </main>
 

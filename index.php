@@ -3,7 +3,7 @@
 use ExplosaoCultural\Helpers\Utils;
 use ExplosaoCultural\Services\EventoServico;
 
-require_once "../vendor/autoload.php";
+require_once "vendor/autoload.php";
 
 $eventoServico = new EventoServico();
 $listaDeEventos = $eventoServico->listarTodos();
@@ -156,7 +156,7 @@ $listaDeEventos = $eventoServico->listarTodos();
       <?php foreach ($listaDeEventos as $evento) { ?>
         <div class="col-md-4">
           <div class="card bg-secondary text-light h-100">
-            <img src="../images/<?=$evento['imagem']?>" class="card-img-top" alt="Exposição">             
+            <img src="images/<?=$evento['imagem']?>" class="card-img-top" alt="Exposição">             
             <div class="card-body">
               <h5 class="card-title">Evento: <?= $evento['evento'] ?></h5> <!-- nome do evento -->
               <p class="card-text">data do evento: <?= $evento['data_evento'] ?></p> <!-- data do  evento -->
