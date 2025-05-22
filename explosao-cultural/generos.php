@@ -21,9 +21,25 @@
           <div class="collapse navbar-collapse" id="menuNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="generos.php">Gêneros</a></li>
-              <li class="nav-item"><a class="nav-link" href="enderecos.php">Endereços</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  generos
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href=""></a> </li>
+                </ul>
+              </li>
               <li class="nav-item"><a class="nav-link" href="usuarios.php">Login</a></li>
+              <li class="nav-item"><a class="nav-link" href="CriarEvento.php">Crie seu evento</a></li>
+
+              
+              <div class="position-relative">
+                <form autocomplete="off" class="d-flex" action="resultados.php" method="POST" onsubmit="return false" id="form-busca">
+                  <input id="campo-busca" name="busca" class="form-control me-2" type="search" placeholder="Pesquise aqui" aria-label="Pesquise aqui">
+                </form>
+                <!-- Div manipulada pelo busca.js -->
+                <div id="resultados" class="mt-3 position-absolute container bg-white shadow-lg p-3 rounded"></div>
+              </div>
             </ul>
           </div>
         </div>
@@ -31,14 +47,16 @@
     </div>
   </header>
 
+
+
   <main class="container py-5">
     <section class="text-center mb-5">
       <h2 class="display-5 fw-bold">Descubra eventos únicos</h2>
-      <p class="lead">Shows, festas e experiências culturais em destaque</p>
     </section>
 
+    <!-- Cards de eventos -->
     <section class="row g-4">
-      <div class="col-md-4">
+      <div class="col-md-4 evento" data-genero="musica">
         <div class="card bg-secondary text-light h-100">
           <img src="https://source.unsplash.com/400x250/?concert" class="card-img-top" alt="Show">
           <div class="card-body">
@@ -48,7 +66,7 @@
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4 evento" data-genero="danca">
         <div class="card bg-secondary text-light h-100">
           <img src="https://source.unsplash.com/400x250/?dance,party" class="card-img-top" alt="Festa">
           <div class="card-body">
@@ -58,7 +76,7 @@
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4 evento" data-genero="arte">
         <div class="card bg-secondary text-light h-100">
           <img src="https://source.unsplash.com/400x250/?art,exhibition" class="card-img-top" alt="Exposição">
           <div class="card-body">
@@ -68,62 +86,34 @@
         </div>
       </div>
 
-      <div class="col-md-4">
+      <!-- Outros exemplos repetidos para teste -->
+      <div class="col-md-4 evento" data-genero="danca">
         <div class="card bg-secondary text-light h-100">
-          <img src="https://source.unsplash.com/400x250/?dance,party" class="card-img-top" alt="Festa">
+          <img src="https://source.unsplash.com/400x250/?dance" class="card-img-top" alt="Festa">
           <div class="card-body">
-            <h5 class="card-title">Baile Black</h5>
-            <p class="card-text">A noite mais dançante do mês. Dia 12 de Agosto.</p>
+            <h5 class="card-title">Noite Latina</h5>
+            <p class="card-text">Ritmos latinos e muita dança. Dia 25 de Julho.</p>
           </div>
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4 evento" data-genero="musica">
         <div class="card bg-secondary text-light h-100">
-          <img src="https://source.unsplash.com/400x250/?art,exhibition" class="card-img-top" alt="Exposição">
+          <img src="https://source.unsplash.com/400x250/?band" class="card-img-top" alt="Banda">
           <div class="card-body">
-            <h5 class="card-title">Arte Urbana</h5>
-            <p class="card-text">Exposição de grafite e arte de rua. De 5 a 15 de Setembro.</p>
+            <h5 class="card-title">Rock no Parque</h5>
+            <p class="card-text">Bandas de rock alternativo ao ar livre. Dia 30 de Julho.</p>
           </div>
         </div>
       </div>
 
-      <div class="col-md-4">
-        <div class="card bg-secondary text-light h-100">
-          <img src="https://source.unsplash.com/400x250/?dance,party" class="card-img-top" alt="Festa">
-          <div class="card-body">
-            <h5 class="card-title">Baile Black</h5>
-            <p class="card-text">A noite mais dançante do mês. Dia 12 de Agosto.</p>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4 evento" data-genero="musica">
         <div class="card bg-secondary text-light h-100">
-          <img src="https://source.unsplash.com/400x250/?dance,party" class="card-img-top" alt="Festa">
+          <img src="https://source.unsplash.com/400x250/?band" class="card-img-top" alt="Banda">
           <div class="card-body">
-            <h5 class="card-title">Baile Black</h5>
-            <p class="card-text">A noite mais dançante do mês. Dia 12 de Agosto.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card bg-secondary text-light h-100">
-          <img src="https://source.unsplash.com/400x250/?dance,party" class="card-img-top" alt="Festa">
-          <div class="card-body">
-            <h5 class="card-title">Baile Black</h5>
-            <p class="card-text">A noite mais dançante do mês. Dia 12 de Agosto.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card bg-secondary text-light h-100">
-          <img src="https://source.unsplash.com/400x250/?dance,party" class="card-img-top" alt="Festa">
-          <div class="card-body">
-            <h5 class="card-title">Baile Black</h5>
-            <p class="card-text">A noite mais dançante do mês. Dia 12 de Agosto.</p>
+            <h5 class="card-title">Rock no Parque</h5>
+            <p class="card-text">Bandas de rock alternativo ao ar livre. Dia 30 de Julho.</p>
           </div>
         </div>
       </div>
@@ -131,11 +121,13 @@
   </main>
 
   <footer class="bg-black text-center py-3">
-    <p class="m-0">Explosão Cultural — Empresa fictícia crianda por Maycon e Lucas &copy; </p>
+    <p class="m-0">Explosão Cultural — Empresa fictícia criada por Maycon e Lucas &copy;</p>
   </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/buscar.js"></script>
   <script src="js/menu.js"></script>
 </body>
-
 
 </html>
