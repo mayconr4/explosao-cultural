@@ -33,8 +33,14 @@ $listaDeEventos = $eventoServico->listarTodos();
           <div class="collapse navbar-collapse" id="menuNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="generos.php">Gêneros</a></li>
-              <li class="nav-item"><a class="nav-link" href="enderecos.php">Endereços</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Gêneros
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href=""></a> </li>
+                </ul>
+              </li>               
               <li class="nav-item"><a class="nav-link" href="usuarios.php">Login</a></li>
                 <div class="position-relative">
                 <form autocomplete="off" class="d-flex" action="resultados.php" method="POST" onsubmit="return false" id="form-busca">
@@ -150,7 +156,7 @@ $listaDeEventos = $eventoServico->listarTodos();
       <?php foreach ($listaDeEventos as $evento) { ?>
         <div class="col-md-4">
           <div class="card bg-secondary text-light h-100">
-            <img src="https://source.unsplash.com/400x250/?art,exhibition" class="card-img-top" alt="Exposição">
+            <img src="../images/<?=$evento['imagem']?>" class="card-img-top" alt="Exposição">             
             <div class="card-body">
               <h5 class="card-title">Evento: <?= $evento['evento'] ?></h5> <!-- nome do evento -->
               <p class="card-text">data do evento: <?= $evento['data_evento'] ?></p> <!-- data do  evento -->
