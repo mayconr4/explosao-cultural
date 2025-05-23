@@ -1,7 +1,50 @@
 <?php 
 require_once 'src/Models/Usuarios.php'; 
 
+
+use ExplosaoCultural\Enums\TipoUsuario; 
+use ExplosaoCultural\Helpers\Utils;
+use ExplosaoCultural\Helpers\Validacoes;
+use ExplosaoCultural\Models\Usuarios;
+use ExplosaoCultural\Services\UsuarioServico;
+
 $mensagemErro = '';
+$usuarioServicos = new UsuarioServico();   
+
+if (isset($_POST['inserir'])){ 
+    try{ 
+        $nome = Utils::sanitizar($_POST["nome"]); 
+        Validacoes::validarNome($nome); 
+
+        $dataNascimento = Utils::sanitizar($_POST["data_nascimento"]);
+        Validacoes::validarDataNascimento($dataNascimento); 
+
+        $email = Utils::sanitizar($_POST["email"], 'email');
+        Validacoes::validarEmail($email);
+
+        $senhaBruta = Utils::sanitizar($_POST["senha"]);
+        Validacoes::validarSenha($senhaBruta);
+        $senha = Utils::codificarSenha($senhaBruta); 
+
+        $tipoStr = $_POST["tipo"];
+        Validacoes::validarTipo($tipoStr);
+        $tipo = TipoUsuario::From($tipoStr);
+
+
+        $usuario = new Usuarios($nome, $dataNascimento, $email, $senha, $tipo);
+        $usuarioServico->inserir($usuario);  
+        
+        exit;
+
+    } catch (Throwable $erro){
+        $mensafemErro = $erro->getMessage();
+    } catch (Throwable $erro){ 
+        //Captura de erros inseperados
+        $mensagemErro = "Erro inesperado: ";
+        Utils::registrarErro($erro);
+    }
+
+}
 
 
 ?>
@@ -56,7 +99,13 @@ $mensagemErro = '';
 
     <form autocomplete="off" action="https://formspree.io/f/mldbpvlk" method="post" id="my-form">
       <fieldset class="border p-4 rounded">
-        <legend class="float-none w-auto px-3">Crie sua conta conosco</legend>
+        <legend class="float-none w-auto px-3">Crie sua conta conosco</legend> 
+
+        <?php if (!empty($mensagemErro)) : ?>
+			<div class="alert alert-danger text-center" role="alert">
+				<?= $mensagemErro ?>
+			</div>
+		<?php endif; ?>
 
         <div class="mb-3">
           <label for="nome" class="form-label">Nome </label>
@@ -65,7 +114,7 @@ $mensagemErro = '';
         
         <div class="mb-3">
          <label for="data_de_nascimento" class="form-label">Data de nascimento</label>
-         <input type="text" class="form-control" name="data_de_nascimento" id="data_de_nascimento" placeholder="00/00/0000">
+         <input type="text" class="form-control" name="data_nascimento" id="data_nascimento" placeholder="00/00/0000">
        </div>
 
         <div class="mb-3">

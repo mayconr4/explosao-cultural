@@ -41,26 +41,31 @@
     <section class="text-center mb-5">
       <h2 class="display-5 fw-bold">Descubra eventos únicos</h2>
       <p class="lead">Shows, festas e experiências culturais em destaque</p>
-    </section>
+    </section> 
+    
+    
 
-    <section class="row g-4">
-  <?php foreach ($listaDeEventos as $evento) { ?>
-  <div class="col-md-4">
-    <div class="card bg-secondary text-light h-100">
-      <img src="images/<?=$evento['imagem']?>" class="card-img-top" alt="Exposição">
-      <div class="card-body">
-        <h5 class="card-title">Evento: <?= $evento['evento'] ?></h5>
-        <p class="card-text">data do evento: <?= $evento['data_evento'] ?></p>
-        <p class="card-text">Horario: <?= $evento['horario'] ?></p>
-        <p class="card-text">Classificação indicativa: <?= $evento['classificacao'] ?></p>
-        <p class="card-text">Telefone: <?= $evento['telefone'] ?></p>
-        <p class="card-text">Descrição: <?= $evento['descricao'] ?></p>
-      </div>
-    </div>
-  </div>
-<?php } ?>
-    </section>
-  </main>
+    <!--<//?php-->
+    <!-- // <section class="row g-4">
+      //   <//?php foreach ($listaDeEventos as $evento) { ?> 
+      //   <div class="col-md-4">
+        //     <div class="card bg-secondary text-light h-100">
+//       <img src="images/<//?= $evento['imagem'] ?>" class="card-img-top" alt="Exposição">
+//       <div class="card-body">
+//         <h5 class="card-title">Evento: <//?= $evento['evento'] ?></h5>
+//         <p class="card-text">data do evento: <//?= $evento['data_evento'] ?></p>
+//         <p class="card-text">Horario: <//?= $evento['horario'] ?></p>
+//         <p class="card-text">Classificação indicativa: <//?= $evento['classificacao'] ?></p>
+//         <p class="card-text">Telefone: <//?= $evento['telefone'] ?></p>
+//         <p class="card-text">Descrição: <//?= $evento['descricao'] ?></p>
+//       </div>
+//     </div>
+//   </div>
+// <//?php } ?> 
+// </section> -->
+
+</main>
+    
 
   <footer class="bg-black text-center py-3">
     <p class="m-0">Explosão Cultural — Empresa fictícia crianda por Maycon e Lucas &copy; </p>

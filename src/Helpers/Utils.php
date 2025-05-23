@@ -16,41 +16,47 @@ final class Utils
         
     }  
     
+     public static function codificarSenha(string $senha): string
+    {
+        return password_hash($senha, PASSWORD_DEFAULT);
+    }
 
-    public static function validarCamposEventos(string $nome,string $data, string $horario, TipoClassificacao $classificacao, string $telefone,  int $enderecoId, int $generoId, int $usuarioId) { 
-        switch ($nome) {
-            case empty($nome):
-                throw new InvalidArgumentException("O campo nome está vazio");
-                break; 
-            case empty($data):
-                throw new InvalidArgumentException("o campo de data está vazio");    
-                break; 
-            case empty($horario):
-                throw new InvalidArgumentException("o campo de horario está vazio");    
-                break; 
-            case empty($classificacao):
-                throw new InvalidArgumentException("o campo de classificacao está vazio");    
-                break; 
-            case empty($telefone):
-                throw new InvalidArgumentException("o campo de telefone está vazio");    
-                break; 
-            case empty($enderecoId):
-                throw new InvalidArgumentException("o campo de endereco está vazio");    
-                break; 
-            case empty($generoId):
-                throw new InvalidArgumentException("o campo de genero está vazio");    
-                break; 
-             case empty($usuarioId):
-                throw new InvalidArgumentException("o campo de usuario está vazio");    
-                break;                                                    
-            default:
-                
-                break;
+    public static function verificarSenha(
+        string $senhaFormulario,
+        string $senhaBanco
+    ): string {
+
+        if (password_verify($senhaFormulario, $senhaBanco)) {
+          
+            return $senhaBanco;
+        } else {
+          
+            return self::codificarSenha($senhaFormulario);
         }
+    }
 
-    } 
+   
 
-    
+    public static function sanitizar(mixed $entrada, string $tipo = 'texto'): mixed
+    {
+        switch ($tipo) {
+            case 'email':
+                return trim(filter_var($entrada, FILTER_SANITIZE_EMAIL));
+            case 'inteiro':
+                return (int) filter_var($entrada, FILTER_SANITIZE_NUMBER_INT);
+            case 'arquivo':
+                // Verifica se é um upload válido vindo de $_FILES
+                if (is_array($entrada) && isset($entrada['tmp_name']) && is_uploaded_file($entrada['tmp_name'])) {
+                    return $entrada; // Tudo certo, deixa o método de upload validar o resto
+                } else {
+                    return null; // Rejeita qualquer tentativa suspeita
+                }
+            default:
+                return trim(filter_var($entrada, FILTER_SANITIZE_SPECIAL_CHARS));
+        }
+    }
+
+
     
      public static function registrarErro(Throwable $e): void
     {

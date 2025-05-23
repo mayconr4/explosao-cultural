@@ -33,6 +33,7 @@ $listaDeEventos = $eventoServico->listarTodos();
           <div class="collapse navbar-collapse" id="menuNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="cria-conta.php">Cadastro</a></li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Gêneros
@@ -41,7 +42,7 @@ $listaDeEventos = $eventoServico->listarTodos();
                   <li><a class="dropdown-item" href=""></a> </li>
                 </ul>
               </li>               
-              <li class="nav-item"><a class="nav-link" href="usuarios.php">Login</a></li>
+            </ul>
                 <div class="position-relative">
                 <form autocomplete="off" class="d-flex" action="resultados.php" method="POST" onsubmit="return false" id="form-busca">
                   <input id="campo-busca" name="busca" class="form-control me-2" type="search" placeholder="Pesquise aqui" aria-label="Pesquise aqui">

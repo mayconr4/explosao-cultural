@@ -2,6 +2,7 @@
 namespace ExplosaoCultural\Services;
 
 use Exception;
+use ExplosaoCultural\DataBase\ConexaoDB;
 use ExplosaoCultural\Enums\TipoUsuario;
 use ExplosaoCultural\Helpers\Utils;
 use ExplosaoCultural\Models\Usuarios;
@@ -12,10 +13,10 @@ final class UsuarioServico
 {
     private PDO $conexao; 
     
-    public function __construct(PDO $conexao)
+     public function __construct()
     {
-        $this->conexao = $conexao;
-    } 
+        $this->conexao = ConexaoDB::getConexao();
+    }
 
     public function listarTodos(): array 
     { 
