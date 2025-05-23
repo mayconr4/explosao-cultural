@@ -48,7 +48,9 @@ final class Utils
                 break;
         }
 
-    }
+    } 
+
+    
     
      public static function registrarErro(Throwable $e): void
     {
